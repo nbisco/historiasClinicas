@@ -1,14 +1,55 @@
 <head>
-  <title>historiasClinicas</title>
+  <title>Historias Clinicas</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <div class="contenedor">
+  	<header>
+  		<div id="agregarHistoria">
+  			{{#if agregarHistoria}}
+  			<form id="formHistoria">
+  				<input type="text" name="apellido" placeholder="Apellido" />
+  				<input type="text" name="nombre" placeholder="Nombre" />
+  				<input type="text" name="edad" placeholder="Edad" />
+  				<input type="text" name="telefono" placeholder="Telefono" />
+  				<input type="text" name="dni" placeholder="DNI" />
+  				<input type="text" name="domicilio" placeholder="Domicilio" />
+  				<input type="text" name="obraSocial" placeholder="Obra Social" />
+  				<button>Agregar</button>
+  			</form>
+  			{{else}}
+  			<button id="nuevaHistoria"><span>&#43;</span>Nueva historia clínica</button>
+  			<span> {{contarHistorias}} </span>
+  			{{/if}}
+  		</div>
+  		<div id="buscador">
+  			<input type="text" name="textoBusqueda" placeholder="Buscar paciente..." />
+  		</div>	
+  	</header>
 
-  {{> hello}}
+  	<section>
+  		<ul>
+  			{{#each paciente}}
+  				{{> ficha}}
+  			{{/each}}	
+  		</ul>
+  	</section>
+  </div>
+
+  
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="ficha">
+	<li class="ficha">
+	  		<h3> {{apellido}}, {{nombre}} </h3>
+	  		<div class="datosPersonales">
+	  			<ul>
+	  				<li><span>Edad:</span> {{edad}} </li>
+	  				<li><span>DNI:</span> {{dni}} </li>
+	  				<li><span>Tel:</span> {{telefono}} </li>
+	  				<li><span>Domicilio:</span> {{domicilio}} </li>
+	  				<li><span>Obra Social:</span> {{obraSocial}} </li>
+	  			</ul>
+	  		</div>
+	  	</li>  	
 </template>
